@@ -1,4 +1,4 @@
-package com.demo.generate;
+package com.demo.sample.generate;
 
 import java.util.ArrayList;
 import java.util.List;

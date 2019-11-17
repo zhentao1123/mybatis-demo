@@ -1,4 +1,4 @@
-package com.demo.generate;
+package com.demo.sample.generate;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -112,7 +112,7 @@ public class SuperGenerator {
                 // 自定义 service 实现类父类
                 //.setSuperServiceImplClass("org.crown.framework.service.impl.BaseServiceImpl")
                 // 自定义 service 接口父类
-                .setSuperServiceClass("com.baomidou.mybatisplus.extension.service.IService")
+                //.setSuperServiceClass("com.baomidou.mybatisplus.extension.service.IService")
                 // 【实体】是否生成字段常量（默认 false）
                 .setEntityColumnConstant(true)
                 // 【实体】是否为构建者模型（默认 false）
@@ -163,12 +163,12 @@ public class SuperGenerator {
                             //return DbColumnType.DATE;
                         }
                         if (fieldType.toLowerCase().equals("time")) {
-                            return DbColumnType.LOCAL_TIME;
-                            //return DbColumnType.TIME;
+                            //return DbColumnType.LOCAL_TIME;
+                            return DbColumnType.TIME;
                         }
                         if (fieldType.toLowerCase().equals("datetime")) {
-                            return DbColumnType.LOCAL_DATE_TIME;
-                            //return DbColumnType.DATE;
+                            //return DbColumnType.LOCAL_DATE_TIME;
+                            return DbColumnType.DATE;
                         }
                         return super.processTypeConvert(globalConfig, fieldType);
                     }

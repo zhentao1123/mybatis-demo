@@ -18,7 +18,7 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.demo.generate;
+package com.demo.sample.generate;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 
