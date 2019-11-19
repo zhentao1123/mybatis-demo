@@ -163,12 +163,12 @@ public class SuperGenerator {
                             //return DbColumnType.DATE;
                         }
                         if (fieldType.toLowerCase().equals("time")) {
-                            //return DbColumnType.LOCAL_TIME;
-                            return DbColumnType.TIME;
+                            return DbColumnType.LOCAL_TIME;
+                            //return DbColumnType.TIME;
                         }
                         if (fieldType.toLowerCase().equals("datetime")) {
-                            //return DbColumnType.LOCAL_DATE_TIME;
-                            return DbColumnType.DATE;
+                            return DbColumnType.LOCAL_DATE_TIME;
+                            //return DbColumnType.DATE;
                         }
                         return super.processTypeConvert(globalConfig, fieldType);
                     }
