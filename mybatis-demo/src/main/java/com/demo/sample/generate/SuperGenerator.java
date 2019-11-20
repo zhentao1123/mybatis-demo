@@ -36,7 +36,20 @@ import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
  */
 public class SuperGenerator {
 
-    /**
+	private String db_driver; 
+	private String db_url; 
+	private String db_userName; 
+	private String db_password;
+	
+    public SuperGenerator(String db_driver, String db_url, String db_userName, String db_password) {
+		super();
+		this.db_driver = db_driver;
+		this.db_url = db_url;
+		this.db_userName = db_userName;
+		this.db_password = db_password;
+	}
+
+	/**
      * 获取TemplateConfig
      *
      * @return
@@ -81,7 +94,7 @@ public class SuperGenerator {
         return new PackageConfig()
                 .setParent("com.demo.sample")
                 .setController("controller")
-                .setEntity("model.entity")
+                .setEntity("entity")
                 .setMapper("mapper")
                 .setService("service")
                 .setServiceImpl("service.impl");
@@ -93,13 +106,12 @@ public class SuperGenerator {
      * @param tableName
      * @return
      */
-    protected StrategyConfig getStrategyConfig(String tableName) {
+    protected StrategyConfig getStrategyConfig(String... tableName) {
         List<TableFill> tableFillList = getTableFills();
         return new StrategyConfig()
                 .setCapitalMode(false)// 全局大写命名
-                //.setTablePrefix("sys_")// 去除前缀
+                .setTablePrefix("sys_")// 去除前缀
                 .setNaming(NamingStrategy.underline_to_camel)// 表名生成策略
-                //.setInclude(new String[] { "user" }) // 需要生成的表
                 //自定义实体父类
                 //.setSuperEntityClass("org.crown.framework.model.BaseModel")
                 // 自定义实体，公共字段
@@ -123,7 +135,7 @@ public class SuperGenerator {
                 .setEntityBooleanColumnRemoveIsPrefix(true)
                 .setRestControllerStyle(false)
                 .setRestControllerStyle(true)
-                .setInclude(tableName);
+                .setInclude(tableName);// 需要生成的表
     }
 
     /**
@@ -134,16 +146,19 @@ public class SuperGenerator {
     protected List<TableFill> getTableFills() {
         // 自定义需要填充的字段
         List<TableFill> tableFillList = new ArrayList<>();
-        //tableFillList.add(new TableFill("createTime", FieldFill.INSERT));
-        //tableFillList.add(new TableFill("updateTime", FieldFill.INSERT_UPDATE));
+        tableFillList.add(new TableFill("createTime", FieldFill.INSERT));
+        tableFillList.add(new TableFill("updateTime", FieldFill.INSERT_UPDATE));
         //tableFillList.add(new TableFill("createUid", FieldFill.INSERT));
         //tableFillList.add(new TableFill("updateUid", FieldFill.INSERT_UPDATE));
         return tableFillList;
     }
-
+    
     /**
      * 获取DataSourceConfig
-     *
+     * @param driverName
+     * @param url
+     * @param userName
+     * @param password
      * @return
      */
     protected DataSourceConfig getDataSourceConfig() {
@@ -173,10 +188,10 @@ public class SuperGenerator {
                         return super.processTypeConvert(globalConfig, fieldType);
                     }
                 })
-                .setDriverName("com.mysql.cj.jdbc.Driver")
-                .setUsername("root")
-                .setPassword("root")
-                .setUrl("jdbc:mysql://127.0.0.1:3306/db1?characterEncoding=utf8");
+                .setDriverName(this.db_driver)
+                .setUsername(this.db_userName)
+                .setPassword(this.db_password)
+                .setUrl(this.db_url);
     }
 
     /**
@@ -194,6 +209,7 @@ public class SuperGenerator {
                 .setBaseColumnList(false)// XML columList
                 .setKotlin(false) //是否生成 kotlin 代码
                 .setOpen(false)
+                //.setSwagger2(true)
                 .setAuthor("BobZ") //作者
                 //自定义文件命名，注意 %s 会自动填充表实体属性！
                 .setEntityName("%s")
@@ -249,7 +265,7 @@ public class SuperGenerator {
      * @param tableName
      * @return
      */
-    protected AutoGenerator getAutoGenerator(String tableName) {
+    protected AutoGenerator getAutoGenerator(String... tableName) {
         return new AutoGenerator()
                 // 全局配置
                 .setGlobalConfig(getGlobalConfig())
@@ -262,8 +278,7 @@ public class SuperGenerator {
                 // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
                 .setCfg(getInjectionConfig())
                 .setTemplate(getTemplateConfig())
-                .setTemplateEngine(new FreemarkerTemplateEngine());
-        //new VelocityTemplateEngine() 默认
+                .setTemplateEngine(new FreemarkerTemplateEngine());//new VelocityTemplateEngine() 默认
     }
 
 }

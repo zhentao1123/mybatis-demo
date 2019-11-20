@@ -31,12 +31,16 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
  */
 public class MysqlGenerator extends SuperGenerator {
 
-    /**
+    public MysqlGenerator(String db_url, String db_userName, String db_password) {
+		super("com.mysql.jdbc.Driver", db_url, db_userName, db_password);
+	}
+
+	/**
      * <p>
      * MySQL generator
      * </p>
      */
-    public void generator(String tableName) {
+    public void generator(String... tableName) {
 
         // 代码生成器
         AutoGenerator mpg = getAutoGenerator(tableName);
