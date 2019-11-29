@@ -1,7 +1,10 @@
 package com.demo.sample.service;
 
-import com.demo.sample.entity.Menu;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.demo.sample.entity.Menu;
+import com.demo.sample.model.dto.MenuTreeDTO;
 
 /**
  * <p>
@@ -12,5 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-11-20
  */
 public interface IMenuService extends IService<Menu> {
-
+	/**
+     * 获取用户权限菜单
+     *
+     * @param uid
+     * @return
+     */
+    List<MenuTreeDTO> getUserPermMenus(Integer uid);
 }
