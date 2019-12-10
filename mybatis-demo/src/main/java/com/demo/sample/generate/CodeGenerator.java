@@ -54,7 +54,7 @@ public class CodeGenerator {
     /**
      * RUN THIS
      */
-    public static void main(String[] args) {
+    public static void main_(String[] args) {
     	
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
