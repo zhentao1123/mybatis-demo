@@ -1,14 +1,12 @@
 package com.demo.sample.service;
 
-import com.demo.sample.entity.User;
-
 import java.util.List;
 
-import org.crown.enums.StatusEnum;
-import org.crown.model.dto.TokenDTO;
-import org.crown.model.dto.UserDetailsDTO;
-
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.demo.sample.entity.User;
+import com.demo.sample.enums.StatusEnum;
+import com.demo.sample.model.dto.TokenDTO;
+import com.demo.sample.model.dto.UserDetailsDTO;
 
 /**
  * <p>
